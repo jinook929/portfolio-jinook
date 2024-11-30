@@ -324,7 +324,7 @@ const Cursor = () => {
           Bridging Design and Development <br/>
           to Create Impactful Online Journeys
         </Description>
-        <ComingSoon>- More On the Way, Can’t Wait to Share! -</ComingSoon>
+        <ComingSoon>More On the Way, Can’t Wait to Share!</ComingSoon>
         <Links>
           <Link href="https://www.linkedin.com/in/jinook-jung/" target="_blank">
             <Image src={LinkedIn} alt="LinkedIn" />
@@ -389,6 +389,7 @@ const Title = styled.h1`
   letter-spacing: -0.02em;
   text-align: center;
   z-index: 1;
+  padding: 1rem;
 `;
 
 const Description = styled.p`
@@ -402,11 +403,14 @@ const Description = styled.p`
   z-index: 1;
   display: flex;
   justify-content: center;
+  padding: 1rem;
 `;
 
 const ComingSoon = styled.span`
   font-size: 20px;
   text-transform: lowercase;
+  text-align: center;
+  padding: 1rem;
 `;
 
 const Links = styled.div`
