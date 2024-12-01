@@ -389,7 +389,7 @@ const Title = styled.h1`
   letter-spacing: -0.02em;
   text-align: center;
   z-index: 1;
-  padding: 1rem;
+  padding-inline: 1rem;
 `;
 
 const Description = styled.p`
@@ -403,14 +403,14 @@ const Description = styled.p`
   z-index: 1;
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  padding-inline: 1rem;
 `;
 
 const ComingSoon = styled.span`
   font-size: 20px;
   text-transform: lowercase;
   text-align: center;
-  padding: 1rem;
+  padding-inline: 1rem;
 `;
 
 const Links = styled.div`
