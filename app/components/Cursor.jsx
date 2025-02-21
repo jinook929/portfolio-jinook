@@ -3,14 +3,9 @@
 import { useState, useEffect } from "react";
 import { selectAll } from 'd3-selection';
 import { descending } from 'd3-array';
-// import { useMediaQuery } from 'react-responsive';
-import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
-import LinkedIn from "../../public/linkedin.png"
-import GitHub from "../../public/github.png"
-import Email from "../../public/email.png"
+import styles from "./Cursor.module.scss";
 import localFont from 'next/font/local'
+
 const audiowideFont = localFont({ src: '../fonts/Audiowide-Regular.ttf' })
 
 class CursorComponent {
@@ -120,7 +115,7 @@ class CursorComponent {
       this.tinyCursor
         ? `<g class="tiny-cursor">
         <circle
-          r=${this.radiusCursorBack || 10}
+          r=${this.radiusCursorBack || 7}
           cx=${this.pos.x}
           cy=${this.pos.y}
           fill="${this.fillCursorBack || "none"}"
@@ -131,7 +126,7 @@ class CursorComponent {
           style="transform-origin: ${this.pos.x}px ${this.pos.y}px">
         </circle>
         <circle
-          r=${this.radiusCursor || 10}
+          r=${this.radiusCursor || 7}
           cx=${this.pos.x}
           cy=${this.pos.y}
           fill="${this.fillCursor || "white"}"
@@ -259,7 +254,7 @@ class CursorComponent {
 
   setParamsParticles() {
     this.nbrParticles = !this.isTouchDevices ? 800 : 300;
-    this.radiusStart = this.diagonalWindow() / 9;
+    this.radiusStart = this.diagonalWindow() / 12;
     this.radiusDiff = 0;
     this.sorting = "desc";
     this.idGradient = "gradient";
@@ -316,151 +311,14 @@ const Cursor = () => {
   }, [isTouchDevices]);
 
   return (
-    <Container>
-      <Box />
-      <Hero>
-        <Title className={audiowideFont.className}>Jinook Jung</Title>
-        <Description>
-          Bridging Design and Development <br/>
-          to Create Impactful Online Journeys
-        </Description>
-        <ComingSoon>More On the Way, Can’t Wait to Share!</ComingSoon>
-        <Links>
-          <Link href="https://www.linkedin.com/in/jinook-jung/" target="_blank">
-            <Image src={LinkedIn} alt="LinkedIn" />
-          </Link>
-          <Link href="mailto:jinook929@gmainl.com" target="_blank">
-            <Image src={Email} alt="Email" />
-          </Link>
-          <Link href="https://github.com/jinook929" target="_blank">
-            <Image src={GitHub} alt="GitHub" />
-          </Link>
-        </Links>
-        <Comment>( Animation inspired by <Link href="https://tympanus.net/codrops/2022/08/24/custom-svg-cursors-with-an-interactive-emitter-effect/" target="_blank">Marlène Bruhat</Link> )</Comment>
-
-      </Hero>
-      <Animation
-        className="cursor-container"
+    <div className={styles.Container}>
+      <div className={styles.Box}></div>
+      <div
+        className={`cursor-container ${styles.Animation}`}
         role="main"
-      ></Animation>
-    </Container>
+      ></div>
+    </div>
   );
 };
 
 export default Cursor;
-
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #0d2a43;
-
-  * {
-    color: #eee;
-  }
-`;
-
-const Box = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 8px solid white;
-  transform: rotate(-7deg);
-`;
-
-const Hero = styled.section`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 2rem;
-`;
-
-const Title = styled.h1`
-  font-size: 72px;
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  text-align: center;
-  z-index: 1;
-  padding-inline: 1rem;
-`;
-
-const Description = styled.p`
-  width: 100%;
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: -0.03em;
-  text-align: center;
-  text-transform: lowercase;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  padding-inline: 1rem;
-`;
-
-const ComingSoon = styled.span`
-  font-size: 20px;
-  text-transform: lowercase;
-  text-align: center;
-  padding-inline: 1rem;
-`;
-
-const Links = styled.div`
-  display: flex;
-  column-gap: 1rem;
-  a {
-    width: 32px;
-    height: 32px;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-  }
-`;
-
-const Comment = styled.blockquote`
-  width: 100%;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: -0.04em;
-  text-align: center;
-  z-index: 1;
-  display: none;
-
-  a {
-    font-size: 12px;
-    text-decoration: underline;
-    text-shadow: 3px 3px 3px rgba(100, 100, 100, 0.5);
-  }
-
-  @media only screen and (max-width: 768px) {
-    font-size: 48px;
-    line-height: 1;
-  }
-
-  & + button {
-    position: absolute;
-    color: black;
-    border-color: black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, calc(-50% + 50px));
-    z-index: 1;
-  }
-`;
-
-const Animation = styled.div`
-  background-color: #0d2a43;
-`;

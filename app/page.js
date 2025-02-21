@@ -1,22 +1,21 @@
-import Head from 'next/head';
+import Hero from "./components/Hero";
 import Cursor from "./components/Cursor";
-import { Metadata } from 'next';
+import WorkGallery from "./components/WorkGallery";
+import Cards from './components/Cards';
 
 export const metadata = {
   title: 'Jinook Jung Dev',
   description:
-    'codingbeautydev.com: Coding - the art, the science, and the passion.',
+    'Bridging Design and Development to Create Impactful Online Journeys',
 };
 
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>Jinook Jung Dev</title>
-      </Head>
-      <div>
-        <Cursor />
-      </div>
-    </>
+    <div className="wrapper">
+      <Cursor />
+      <Hero />
+      <WorkGallery />
+      {/* <Cards /> */}
+    </div>
   );
 }

@@ -1,0 +1,38 @@
+/* components/Cards.module.scss */
+.CardsContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  .CardsInner {
+    width: 80%;
+    margin-inline: auto;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.25rem;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    z-index: 3;
+  }
+
+  .DownArrow {
+    position: absolute;
+    top: 2rem;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    z-index: 2;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: rotate(180deg);
+    }
+  }
+}
