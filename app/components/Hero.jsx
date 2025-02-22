@@ -17,7 +17,14 @@ const Hero = () => {
     <div id="hero" className={styles.Hero}>
       <h1 className={`${audiowideFont.className} ${styles.Title}`}>
         <Typewriter
-          words={['Jinook Jung', 'Software Engineer', 'Full Stack', 'JS / Python / PHP', "and more ...", 'Jinook Jung']}
+          words={[
+            'Jinook Jung', 
+            'Software Engineer', 
+            'Full Stack', 
+            'JS / Python / PHP', 
+            "and more ...", 
+            'Jinook Jung',
+          ]}
           loop={1}
           cursor={false}
           typeSpeed={100}
@@ -47,6 +54,7 @@ const Hero = () => {
       </div>
       <div className={styles.CTA}>
         <a href="#works" className={styles.DownArrow}>
+          <span className={`${audiowideFont.className}`}>Works</span>
           <Image src={DownArrow} alt="Down Arrow" />
         </a>
       </div>

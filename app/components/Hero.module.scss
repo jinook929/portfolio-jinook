@@ -36,6 +36,21 @@
     span {
       font-family: "Montserrat", sans-serif;
     }
+
+    @media screen and (max-width: 1200px) {
+      font-size: 64px;
+      min-height: 64px;
+    }
+
+    @media screen and (max-width: 800px) {
+      font-size: 48px;
+      min-height: 48px;
+    }
+
+    @media screen and (max-width: 600px) {
+      font-size: 28px;
+      min-height: 28px;
+    }
   }
 
   .Description {
@@ -59,6 +74,10 @@
       opacity: 0;
       animation: fadeIn 1s ease-in-out 0.5s forwards;
     }
+
+    @media screen and (max-width: 600px) {
+      font-size: 20px;
+    }
   }
 
   .Comment {
@@ -75,6 +94,10 @@
       &:hover {
         color: #694d00;
       }
+    }
+
+    @media screen and (max-width: 600px) {
+      font-size: 16px;
     }
   }
 
@@ -104,17 +127,64 @@
     justify-content: center;
     align-items: center;
     row-gap: 0.5rem;
+    width: 72px;
 
     .DownArrow {
       width: 32px;
+      width: 100%;
       height: 32px;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
       z-index: 2;
+
+      @keyframes gradientText {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 200% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+  
+      span {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        background: linear-gradient(
+          90deg,
+          #ffffff,
+          #ffd166,
+          #ef476f,
+          #ffd166,
+          #ffffff
+        );
+        background-size: 400% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientText 4s linear infinite;
+      }
+
+      @keyframes movingArrow {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(4px);
+        }
+        
+      }
 
       img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        animation: movingArrow 1s infinite ease-in-out;
       }
     }
   }

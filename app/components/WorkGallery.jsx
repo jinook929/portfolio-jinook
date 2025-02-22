@@ -70,7 +70,7 @@ const WorkGallery = () => {
       id: 5,
       image1: Availability1,
       image2: Availability2,
-      title: 'Availability-Sharing App',
+      title: 'Availability Sharing App',
       techStack: 'Elixir / Phoenix / Svelte',
       description: 'Developed an on-demand full-stack app with Postgres DB to optimize daily team availability.'
     },
