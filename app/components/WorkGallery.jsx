@@ -179,7 +179,9 @@ const WorkGallery = () => {
               </div>
               <div className={`${styles.Content}`}>
                 {item.link1 ? 
-                <h2 className={`${styles.Title} ${styles.hasLink}`} data-item={item.id}><Link href={item.link1}>{item.title}</Link></h2>
+                <h2 className={`${styles.Title} ${styles.hasLink}`} data-item={item.id}>
+                  <Link href={item.link1} target='_blank'>{item.title}</Link>
+                </h2>
                 :
                 <h2 className={`${styles.Title}`} data-item={item.id}>{item.title}</h2>
                 }
