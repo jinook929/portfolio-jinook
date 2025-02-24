@@ -5,9 +5,14 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
   width: 100%;
   height: 100vh;
   max-width: 1200px;
-  min-height: 900px;
+  min-height: 750px;
   margin: 0 auto;
   position: relative;
+
+  @media screen and (max-width: 800px) {
+    height: 100%;
+    min-height: 100vh;
+  }
 
   * {
     margin: 0;
@@ -29,6 +34,10 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       z-index: 100;
       transform: translate(0, 0px);
       transition: all $transitionTime;
+
+      @media screen and (max-width: 1200px) {
+        bottom: 100px;
+      }
 
       &.ItemButton {
         cursor: pointer;
@@ -82,11 +91,17 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         .Images {
           position: relative;
 
+          @media screen and (max-width: 800px) {
+            min-height: unset;
+            gap: 1rem;
+          }
+
           .ImgWrapper {
             display: inline-block;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            position: relative;
 
             .Img {
               width: 100%;
@@ -96,8 +111,23 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             }
 
             &:hover {
+              &:has(.hasLink) {
+                box-shadow: 0 -20px 10px -10px #ffd166, 0 20px 10px -10px #ef476f;
+              }
               .Img {
                 transform: scale(1.1);
+              }
+            }
+
+            @media screen and (max-width: 800px) {
+              margin-inline: auto;
+              max-height: 30vh;
+              width: calc(100vw) -100px;
+              aspect-ratio: 4/3;
+
+              .Img {
+                width: calc(100% - 4rem);
+                object-fit: contain;
               }
             }
           }
@@ -107,7 +137,15 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
           position: absolute;
           left: 2rem;
           top: 100%;
-          transform: translateY(calc(0% + 2rem));
+          transform: translateY(calc(0% + 1rem));
+
+          @media screen and (max-width: 800px) {
+            position: relative;
+            top: 40px;
+            left: 0;
+            transform: translateY(0);
+            width: 50%;
+          }
 
           .Title {
             font-size: 50px;
@@ -124,6 +162,38 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
               font-size: 25px;
               top: -40px;
               left: 15px;
+            }
+
+            &.hasLink {
+              @keyframes gradientText {
+                0% {
+                  background-position: 0% 50%;
+                }
+                50% {
+                  background-position: 200% 50%;
+                }
+                100% {
+                  background-position: 0% 50%;
+                }
+              }
+              &:hover {
+                background: linear-gradient(
+                  90deg,
+                  #ffffff,
+                  #ffd166,
+                  #ef476f,
+                  #ffd166,
+                  #ffffff
+                );
+                background-size: 400% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: gradientText 4s linear infinite;
+                &::after {
+                  -webkit-text-fill-color: #ffffff;
+                }
+              }
             }
           }
 
@@ -171,6 +241,22 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
           bottom: 150px;
         }
       }
+      @keyframes bigToSmall_tablet {
+        from {
+          width: 480px;
+          height: auto;
+          aspect-ratio: 4/3;
+          left: 2rem;
+          bottom: calc(100% - 4rem);
+          transform: translateY(100%);
+        }
+        to {
+          width: 120px;
+          height: 120px;
+          left: calc(#{$leftPosition});
+          bottom: 100px;
+        }
+      }
 
       @for $i from 1 through 4 {
         @keyframes slideRight#{$i} {
@@ -210,7 +296,12 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 4rem;
-            padding: 6rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
+
+            @media screen and (max-width: 800px) {
+              grid-template-columns: 1fr;
+              gap: 1rem;
+            }
 
             .ImgWrapper {
               width: 100%;
@@ -220,7 +311,7 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
               .Img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover !important;
+                object-fit: cover;
                 border-radius: 0px;
               }
 
@@ -241,6 +332,10 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         }
         &:nth-child(2) {
           animation: bigToSmall 1.2s ease-in-out 1 forwards;
+
+          @media screen and (max-width: 1200px) {
+            animation: bigToSmall_tablet 1.2s ease-in-out 1 forwards;
+          }
         }
         &:nth-child(3) {
           animation: slideRight4 1.2s ease-in-out 0.3s 1 forwards;
@@ -314,7 +409,12 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 4rem;
-            padding: 6rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
+
+            @media screen and (max-width: 800px) {
+              grid-template-columns: 1fr;
+              gap: 1rem;
+            }
 
             .ImgWrapper {
               width: 100%;
@@ -324,7 +424,7 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
               .Img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover !important;
+                object-fit: cover;
                 border-radius: 0px;
               }
 
@@ -464,6 +564,24 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
         color: #ffffff;
         background-color: transparent;
       }
+
+      @media screen and (max-width: 1200px) {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+      }
+
+      @media screen and (max-width: 800px) {
+        width: 24px;
+        height: 24px;
+        font-size: 16px;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 16px;
+        height: 16px;
+        font-size: 12px;
+      }
     }
   }
 
@@ -493,7 +611,7 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
   }
   .DownArrow {
     position: absolute;
-    top: 2rem;
+    top: 0.75rem;
     left: 50%;
     transform: translateX(-50%);
     width: 32px;
@@ -506,6 +624,12 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       height: 100%;
       object-fit: contain;
       transform: rotate(180deg);
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .List, .Arrows {
+      display: none;
     }
   }
 }

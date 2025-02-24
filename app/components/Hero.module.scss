@@ -18,11 +18,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 2rem;
+  row-gap: 0rem;
   position: relative;
 
   .Title {
-    font-size: 72px;
+    font-size: 80px;
     font-weight: 700;
     line-height: 1.08;
     letter-spacing: -0.02em;
@@ -30,26 +30,28 @@
     text-align: center;
     z-index: 1;
     width: 100%;
-    min-height: 88px;
+    min-height: 168px;
     padding-inline: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     span {
       font-family: "Montserrat", sans-serif;
     }
 
     @media screen and (max-width: 1200px) {
-      font-size: 64px;
-      min-height: 64px;
+      font-size: 72px;
     }
 
     @media screen and (max-width: 800px) {
-      font-size: 48px;
-      min-height: 48px;
+      font-size: 64px;
+      min-height: 138px;
     }
 
     @media screen and (max-width: 600px) {
-      font-size: 28px;
-      min-height: 28px;
+      font-size: 48px;
+      min-height: 108px;
     }
   }
 
@@ -75,6 +77,10 @@
       animation: fadeIn 1s ease-in-out 0.5s forwards;
     }
 
+    @media screen and (max-width: 800px) {
+      font-size: 28px;
+    }
+
     @media screen and (max-width: 600px) {
       font-size: 20px;
     }
@@ -84,7 +90,7 @@
     font-size: 20px;
     text-transform: lowercase;
     text-align: center;
-    padding-inline: 1rem;
+    padding: 1rem 1rem 2rem;
     z-index: 1;
 
     a {
@@ -97,7 +103,7 @@
     }
 
     @media screen and (max-width: 600px) {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 

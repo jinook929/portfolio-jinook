@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import styles from "./WorkGallery.module.scss";
+import WorksMobile from './WorksMobile';
 import DownArrow from "../../public/down-arrow.svg";
 import Everly1 from "../../public/everly_1.webp";
 import Everly2 from "../../public/everly_2.webp";
@@ -53,7 +54,7 @@ const WorkGallery = () => {
       link1: 'https://www.madwell.com/',
       link2: 'https://www.madwell.com/about',
       title: 'Madwell',
-      techStack: 'Next.js / CSS Animation / Headless WP',
+      techStack: 'Next.js / JS.CSS Animation / Headless WP',
       description: 'Created an branding/marketing agency’s site, showcasing its unique, nontraditional approach.',
     },
     {
@@ -162,22 +163,26 @@ const WorkGallery = () => {
             className={`${styles.MainItem} ${styles.Item} ${transitionDirection === 'next' ? styles.slideNext : ''} ${transitionDirection === 'prev' ? styles.slidePrev : ''} ${idx === 0 ? styles.Active : ''}`}
           >
             <div className={`${styles.Images}`}>
-              <div className={styles.ImgWrapper}>
+              <div className={`${styles.ImgWrapper}`}>
                 {item.link1 ?
-                  <Link href={item.link1} target='_blank'><Image className={styles.Img} src={item.image1} alt={item.title} /></Link>
+                  <Link href={item.link1} target='_blank' className={` ${styles.hasLink}`}><Image className={styles.Img} src={item.image1} alt={item.title} /></Link>
                   :
                   <Image className={styles.Img} src={item.image1} alt={item.title} />
                 }
               </div>
               <div className={styles.ImgWrapper}>
                 {item.link2 ?
-                  <Link href={item.link2} target='_blank'><Image className={styles.Img} src={item.image2} alt={item.title} /></Link>
+                  <Link href={item.link2} target='_blank' className={` ${styles.hasLink}`}><Image className={styles.Img} src={item.image2} alt={item.title} /></Link>
                   :
                   <Image className={styles.Img} src={item.image2} alt={item.title} />
                 }
               </div>
               <div className={`${styles.Content}`}>
-                <div className={`${styles.Title}`} data-item={item.id}>{item.title}</div>
+                {item.link1 ? 
+                <h2 className={`${styles.Title} ${styles.hasLink}`} data-item={item.id}><Link href={item.link1}>{item.title}</Link></h2>
+                :
+                <h2 className={`${styles.Title}`} data-item={item.id}>{item.title}</h2>
+                }
                 <div className={`${styles.Name}`}>{item.techStack}</div>
                 <div className={`${styles.Des}`}>{item.description}</div>
                 {item.linkText && <Link
@@ -236,6 +241,8 @@ const WorkGallery = () => {
           <div className={`${styles.ProgressBar}`} style={{ width: `${progress}%` }} />
         </div>
       </div>
+
+      <WorksMobile items={items} />
 
       <a href="#hero" className={styles.DownArrow}>
         <Image src={DownArrow} alt="Down Arrow" />
