@@ -547,8 +547,7 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: 2px solid rgb(255, 255, 255);
-      color: rgb(255, 255, 255);
+      border: 2px solid rgb(255, 255, 255, 0.5);
       background-color: transparent;
       outline: none;
       font-size: 25px;
@@ -559,10 +558,18 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       align-items: center;
       justify-content: center;
 
+      i {
+        color: rgb(255, 255, 255, 0.5);
+      }
+
       &:hover {
         border: 2px solid #ffffff;
         color: #ffffff;
         background-color: transparent;
+
+        i {
+          color: #ffffff;
+        }
       }
 
       @media screen and (max-width: 1200px) {
@@ -609,6 +616,7 @@ $transitionTime: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
       transition: all $transitionTime;
     }
   }
+
   .DownArrow {
     position: absolute;
     top: 0.75rem;
