@@ -11,7 +11,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/effect-cube';
 
-const WorksMobile = ({ items }) => {
+const WorksMobile = (props) => {
+  const { items } = props;
+
   return (
     <section className={styles.WorksMobile}>
       <Swiper
