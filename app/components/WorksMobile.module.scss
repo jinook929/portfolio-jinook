@@ -81,7 +81,9 @@
       :global {
         .swiper-button-next,
         .swiper-button-prev {
-          top: 0.5rem;
+          margin-top: 0;
+          top: 0px;
+          transform: translateY(-50%);
           background-color: rgba(0, 0, 0, 0.5);
           background-color: transparent;
           border: 1px solid #ffffff;
@@ -113,7 +115,8 @@
         }
 
         .swiper-pagination {
-          top: -1rem;
+          top: 0px;
+          transform: translateY(-50%);
           height: 20px;
         }
 
