@@ -27,10 +27,10 @@ const WorksMobile = ({ items }) => {
         }}
         grabCursor={true}
         cubeEffect={{
-          shadow: true,
-          slideShadows: true,
-          shadowOffset: 20,
-          shadowScale: 0.94,
+          shadow: false,
+          slideShadows: false,
+          shadowOffset: 0,
+          shadowScale: 0,
         }}
         navigation
         pagination={{ clickable: true }}
