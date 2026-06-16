@@ -151,7 +151,7 @@ const WorkGallery = () => {
     setIsAnimating(true);
     setTransitionDirection('next');
     setItems(prev => [...prev.slice(1), prev[0]]);
-    setActiveIndex(activeIndex + 1);
+    setActiveIndex(a => a + 1);
     setTimeout(() => {
       setIsAnimating(false);
     }, TRANSITION_TIME);
@@ -162,7 +162,7 @@ const WorkGallery = () => {
     setIsAnimating(true);
     setTransitionDirection('prev');
     setItems(prev => [prev[prev.length - 1], ...prev.slice(0, -1)]);
-    setActiveIndex(activeIndex - 1);
+    setActiveIndex(a => a - 1);
     setTimeout(() => {
       setIsAnimating(false);
     }, TRANSITION_TIME);
