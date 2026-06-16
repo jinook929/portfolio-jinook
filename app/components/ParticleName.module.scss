@@ -1,0 +1,25 @@
+.wrap {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.text {
+  display: inline-block;
+  transition: opacity 0.5s ease;
+
+  // hidden once the WebGL canvas takes over, but kept in the
+  // a11y tree (opacity, not display:none) for SEO + screen readers
+  &[data-ready="true"] {
+    opacity: 0;
+  }
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}

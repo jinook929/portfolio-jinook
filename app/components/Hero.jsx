@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Hero.module.scss';
-import { Typewriter } from 'react-simple-typewriter'
+// import { Typewriter } from 'react-simple-typewriter';
+import ParticleName from './ParticleName';
 import LinkedIn from "../../public/linkedin.png";
 import GitHub from "../../public/github.png";
 import Email from "../../public/email.png";
@@ -16,7 +17,8 @@ const Hero = () => {
   return (
     <div id="hero" className={styles.Hero}>
       <h1 className={`${audiowideFont.className} ${styles.Title}`}>
-        <Typewriter
+        <ParticleName text="JINOOK JUNG" fontFamily={audiowideFont.style.fontFamily} />
+        {/* <Typewriter
           words={[
             'Jinook Jung', 
             'Software Engineer', 
@@ -30,16 +32,16 @@ const Hero = () => {
           typeSpeed={100}
           deleteSpeed={50}
           delaySpeed={1500}
-        />
+        /> */}
       </h1>
       <p className={styles.Description}>
         <span>Bridging Design and Development</span>
         <span>to Create Impactful Online Journeys</span>
       </p>
       <span className={styles.Comment}>
-        currently working at <a href="https://www.madwell.com/" target='_blank'>Madwell</a>
+        always curious about new things and eager to realize ideas
         <br />
-        ( also available for freelance projects )
+        ( available for freelance projects )
         </span>
       <div className={styles.Links}>
         <Link href="https://www.linkedin.com/in/jinook-jung/" target="_blank">
