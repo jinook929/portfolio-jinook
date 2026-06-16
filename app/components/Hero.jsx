@@ -39,7 +39,7 @@ const Hero = () => {
         <span>to Create Impactful Online Journeys</span>
       </p>
       <span className={styles.Comment}>
-        always curious about new things and eager to realize ideas
+        ai powered full stack software engineer
         <br />
         ( available for freelance projects )
         </span>
