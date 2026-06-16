@@ -78,9 +78,8 @@
         }
       }
 
-      :global {
-        .swiper-button-next,
-        .swiper-button-prev {
+      :global(.swiper-button-next),
+      :global(.swiper-button-prev) {
           margin-top: 0;
           top: 0px;
           transform: translateY(-50%);
@@ -98,7 +97,7 @@
           }
         }
 
-        .swiper-button-next {
+        :global(.swiper-button-next) {
           right: calc(50% - 150px);
 
           &::after {
@@ -106,7 +105,7 @@
           }
         }
 
-        .swiper-button-prev {
+        :global(.swiper-button-prev) {
           left: calc(50% - 150px);
 
           &::after {
@@ -114,17 +113,16 @@
           }
         }
 
-        .swiper-pagination {
+        :global(.swiper-pagination) {
           top: 0px;
           transform: translateY(-50%);
           height: 20px;
         }
 
-        .swiper-scrollbar {
+        :global(.swiper-scrollbar) {
           top: -3.5rem;
           height: 0.25rem;
         }
-      }
     }
   }
 }
