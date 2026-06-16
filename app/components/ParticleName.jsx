@@ -12,6 +12,7 @@ uniform vec2 u_mouse;
 uniform float u_progress;
 uniform float u_time;
 uniform float u_dpr;
+uniform mediump float u_pass;
 varying float v_seed;
 
 float easeOutCubic(float x) { return 1.0 - pow(1.0 - x, 3.0); }
@@ -50,21 +51,24 @@ void main() {
   vec2 clip = (pos / u_res) * 2.0 - 1.0;
   clip.y = -clip.y;
   gl_Position = vec4(clip, 0.0, 1.0);
-  gl_PointSize = (2.2 + a_seed * 1.0) * u_dpr;
+  gl_PointSize = (u_pass > 0.5 ? (5.5 + a_seed * 2.0) : (2.0 + a_seed * 0.9)) * u_dpr;
 }
 `;
 
 const FRAG = `
 precision mediump float;
 varying float v_seed;
+uniform float u_pass; // 0 = crisp core (legibility), 1 = soft halo (glow)
 void main() {
-  vec2 c = gl_PointCoord - 0.5;
-  float alpha = smoothstep(0.5, 0.32, length(c));
-  if (alpha <= 0.01) discard;
+  float d = length(gl_PointCoord - 0.5);
+  float a = u_pass > 0.5
+    ? smoothstep(0.5, 0.0, d) * 0.20   // wide soft halo
+    : smoothstep(0.5, 0.32, d);        // crisp solid core
+  if (a <= 0.003) discard;
   vec3 cream = vec3(0.99, 0.97, 0.90);
   vec3 gold  = vec3(1.0, 0.82, 0.40);
   vec3 col = mix(cream, gold, step(0.82, v_seed)); // ~18% gold accents
-  gl_FragColor = vec4(col, alpha);
+  gl_FragColor = vec4(col * a, a); // premultiplied
 }
 `;
 
@@ -95,7 +99,7 @@ export default function ParticleName({ text = "JINOOK JUNG", fontFamily }) {
     const gl = canvas.getContext("webgl", {
       alpha: true,
       antialias: true,
-      premultipliedAlpha: false,
+      premultipliedAlpha: true,
     });
     if (!gl) return;
 
@@ -121,6 +125,7 @@ export default function ParticleName({ text = "JINOOK JUNG", fontFamily }) {
       progress: gl.getUniformLocation(prog, "u_progress"),
       time: gl.getUniformLocation(prog, "u_time"),
       dpr: gl.getUniformLocation(prog, "u_dpr"),
+      pass: gl.getUniformLocation(prog, "u_pass"),
     };
 
     const bufTarget = gl.createBuffer();
@@ -128,8 +133,7 @@ export default function ParticleName({ text = "JINOOK JUNG", fontFamily }) {
     const bufSeed = gl.createBuffer();
 
     gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(0, 0, 0, 0); // blend func is set per pass in frame()
 
     const off = document.createElement("canvas");
     const octx = off.getContext("2d", { willReadFrequently: true });
@@ -227,7 +231,17 @@ export default function ParticleName({ text = "JINOOK JUNG", fontFamily }) {
       gl.uniform1f(loc.progress, progress);
       gl.uniform1f(loc.time, elapsed);
       gl.uniform2f(loc.mouse, mouse.x, mouse.y);
+
+      // pass 1: additive glow halo (big soft points)
+      gl.blendFunc(gl.ONE, gl.ONE);
+      gl.uniform1f(loc.pass, 1.0);
       gl.drawArrays(gl.POINTS, 0, count);
+
+      // pass 2: crisp strokes on top (premultiplied source-over)
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+      gl.uniform1f(loc.pass, 0.0);
+      gl.drawArrays(gl.POINTS, 0, count);
+
       raf = requestAnimationFrame(frame);
     }
 
