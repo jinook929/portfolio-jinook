@@ -184,8 +184,10 @@ export default function ParticleName({ text = "JINOOK JUNG", fontFamily }) {
       octx.textBaseline = "middle";
       octx.font = `100px ${fontFamily}`;
       const base = octx.measureText(text).width || 1;
-      const fontPx = Math.min(((w * 0.92) / base) * 100, h * 0.74);
-      octx.font = `${fontPx * 1.33}px ${fontFamily}`;
+      // fit to the box: width never exceeds 92% (so the ends never clip),
+      // height capped so the word stays vertically centred
+      const fontPx = Math.min(((w * 0.92) / base) * 100, h * 0.98);
+      octx.font = `${fontPx}px ${fontFamily}`;
       octx.fillText(text, w / 2, h / 2 + fontPx * 0.04);
 
       const img = octx.getImageData(0, 0, w, h).data;
