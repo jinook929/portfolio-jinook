@@ -26,6 +26,8 @@ import Golf1 from "../../public/golf_1.webp";
 import Golf2 from "../../public/golf_2.webp";
 import Weville1 from "../../public/weville_1.webp";
 import Weville2 from "../../public/weville_2.webp";
+import Ht1 from "../../public/ht_1.webp";
+import Ht2 from "../../public/ht_2.webp";
 
 const WorkGallery = () => {
   const [items, setItems] = useState([
@@ -69,10 +71,18 @@ const WorkGallery = () => {
       link2: 'https://www.thegolfstory.com/coaching',
       title: 'The Golf Story',
       techStack: 'Next.js / Supabase / Framer Motion',
-      description: 'Built a full-stack website for a premium golf coaching and club-fitting studio, featuring a members-only portal for lesson tracking and coaching.'
+      description: 'Help build a full-stack website for a premium golf coaching and club-fitting studio, featuring a members-only portal for lesson tracking and coaching.'
     },
     {
       id: 5,
+      image1: Ht1,
+      image2: Ht2,
+      title: 'Hailstorm Talent',
+      techStack: 'React / Express / GCP',
+      description: 'Built a full-stack platform for a talent agency to manage projects from casting and booking through contracts, production, and residuals.'
+    },
+    {
+      id: 6,
       image1: Greenleaf1,
       image2: Greenleaf2,
       link1: 'https://www.greenleafpetresort.com/',
@@ -82,7 +92,7 @@ const WorkGallery = () => {
       description: 'Helped a legacy pet resort highlight its reimagined, personalized approach to premium pet care.',
     },
     {
-      id: 6,
+      id: 7,
       image1: Plum1,
       image2: Plum2,
       link1: 'https://plumorganics.com/',
@@ -92,7 +102,7 @@ const WorkGallery = () => {
       description: 'Redesigned Plum Organics’ website to inspire adventurous healthy eating for kids.',
     },
     {
-      id: 7,
+      id: 8,
       image1: Availability1,
       image2: Availability2,
       title: 'Availability Sharing App',
@@ -100,7 +110,7 @@ const WorkGallery = () => {
       description: 'Developed an on-demand full-stack app with Postgres DB to optimize daily team availability.'
     },
     {
-      id: 8,
+      id: 9,
       image1: Everly1,
       image2: Everly2,
       title: 'Everly',
@@ -110,7 +120,7 @@ const WorkGallery = () => {
       linkUrl: 'https://www.madwell.com/project/website',
     },
     {
-      id: 9,
+      id: 10,
       image1: Visible1,
       image2: Visible2,
       title: 'Visible Singles Registry',
@@ -120,7 +130,7 @@ const WorkGallery = () => {
       linkUrl: 'https://shortyawards.com/15th/match-group-x-visible-partner-to-launch-a-singles-registry',
     },
     {
-      id: 10,
+      id: 11,
       image1: Signin1,
       image2: Signin2,
       title: 'Sign-in App',
